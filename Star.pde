@@ -1,8 +1,8 @@
 class Star{
 	private int myX, myY;
 	public Star(){
-		myX = (int)(Math.random()*501);
-		myY = (int)(Math.random()*501);
+		myX = (int)(Math.random()*width);
+		myY = (int)(Math.random()*height);
 	}
 	public void show(){
 		stroke(255);

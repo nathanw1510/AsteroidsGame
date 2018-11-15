@@ -1,16 +1,21 @@
 Spaceship ship;
 Star[] s;
+Asteroid[] a;
 boolean isAccelerating = false;
 boolean isTurningLeft = false;
 boolean isTurningRight = false;
 boolean isHyperspace = false;
 
 public void setup(){
-	size(500,500);
+	size(1000,1000);
   	ship = new Spaceship();
-  	s = new Star[100];
+  	a = new Asteroid[15];
+  	s = new Star[250];
   	for(int i = 0; i < s.length; i++){
   		s[i] = new Star();
+  	}
+  	for(int j = 0; j < a.length; j++){
+  		a[j] = new Asteroid();
   	}
 }
 
@@ -19,8 +24,13 @@ public void draw(){
 	for(int i = 0; i < s.length; i++){
 		s[i].show();
 	}
+	for(int j = 0; j < a.length; j++){
+		a[j].show();
+		a[j].move();
+	}
     ship.show();
     ship.move();
+
     if(isAccelerating == true){
     	ship.accelerate(.1);
     }
