@@ -7,7 +7,7 @@ boolean isTurningRight = false;
 boolean isHyperspace = false;
 
 public void setup(){
-	size(1000,1000);
+	size(700,700);
   	ship = new Spaceship();
   	a = new Asteroid[15];
   	s = new Star[250];
