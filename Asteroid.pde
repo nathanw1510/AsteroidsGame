@@ -29,24 +29,24 @@ class Asteroid extends Floater{
 		corners = 9;
 		xCorners = new int[corners];
 		yCorners = new int[corners];
-		xCorners[0] = -35;
-		yCorners[0] = 26;
-		xCorners[1] = -34;
-		yCorners[1] = 12;
-		xCorners[2] = -27;
-		yCorners[2] = -24;
-		xCorners[3] = 10;
-		yCorners[3] = -26;
-		xCorners[4] = 25;
-		yCorners[4] = -25;
-		xCorners[5] = 20;
-		yCorners[5] = 11;
-		xCorners[6] = 25;
-		yCorners[6] = 18;
-		xCorners[7] = 10;
-		yCorners[7] = 20;
-		xCorners[8] = -25;
-		yCorners[8] = 19;
+		xCorners[0] = -25;
+		yCorners[0] = 16;
+		xCorners[1] = -24;
+		yCorners[1] = 2;
+		xCorners[2] = -17;
+		yCorners[2] = -14;
+		xCorners[3] = 0;
+		yCorners[3] = -16;
+		xCorners[4] = 15;
+		yCorners[4] = -15;
+		xCorners[5] = 10;
+		yCorners[5] = 1;
+		xCorners[6] = 15;
+		yCorners[6] = 8;
+		xCorners[7] = 0;
+		yCorners[7] = 10;
+		xCorners[8] = -15;
+		yCorners[8] = 9;
 
 	}
 	public void move(){
