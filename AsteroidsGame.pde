@@ -9,7 +9,7 @@ boolean isHyperspace = false;
 public void setup(){
 	size(500,500);
   	ship = new Spaceship();
-  	a = new Asteroid[10];
+  	a = new Asteroid[15];
   	s = new Star[150];
   	for(int i = 0; i < s.length; i++){
   		s[i] = new Star();
@@ -21,6 +21,8 @@ public void setup(){
 
 public void draw(){
 	background(0);
+	ship.show();
+    ship.move();
 	for(int i = 0; i < s.length; i++){
 		s[i].show();
 	}
@@ -28,8 +30,7 @@ public void draw(){
 		a[j].show();
 		a[j].move();
 	}
-    ship.show();
-    ship.move();
+   
 
     if(isAccelerating == true){
     	ship.accelerate(.1);
