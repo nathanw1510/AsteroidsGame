@@ -14,8 +14,8 @@ public void setup(){
   	for(int i = 0; i < s.length; i++){
   		s[i] = new Star();
   	}
-  	for(int j = 0; j < a.length; j++){
-  		a[j] = new Asteroid();
+  	for(int nI = 0; nI < a.length; nI++){
+  		a[nI] = new Asteroid();
   	}
 }
 
@@ -26,9 +26,9 @@ public void draw(){
 	for(int i = 0; i < s.length; i++){
 		s[i].show();
 	}
-	for(int j = 0; j < a.length; j++){
-		a[j].show();
-		a[j].move();
+	for(int nI = 0; nI < a.length; nI++){
+		a[nI].show();
+		a[nI].move();
 	}
    
 
