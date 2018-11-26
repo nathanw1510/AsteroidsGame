@@ -28,7 +28,6 @@ public void draw(){
 	}
 	for(int j = 0; j < a.length; j++){
 		a[j].show();
-		a[j].move();
 	}
    
 
