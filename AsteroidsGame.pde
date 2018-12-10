@@ -1,7 +1,7 @@
 Spaceship ship;
 Star[] s;
-ArrayList<Asteroid>a;
-ArrayList<Bullet>b;
+ArrayList <Asteroid> a;
+ArrayList <Bullet> b;
 boolean isAccelerating = false;
 boolean isTurningLeft = false;
 boolean isTurningRight = false;
@@ -15,8 +15,8 @@ public void setup(){
 	bullets = 30;
   	ship = new Spaceship();
   	s = new Star[150];
-  	a = new ArrayList<Asteroid>();
-  	b = new ArrayList<Bullet>();
+  	a = new ArrayList <Asteroid>();
+  	b = new ArrayList <Bullet>();
   	for(int j = 0; j < 15; j++){
   		a.add(new Asteroid());
   	}
@@ -76,7 +76,7 @@ public void draw(){
 	}
 
     if(isAccelerating == true){
-    	ship.accelerate(.1);
+    	ship.accelerate(.05);
     }
     if(isTurningLeft == true){
     	ship.turn(-5);
@@ -95,6 +95,9 @@ public void draw(){
  		ship.setPointDirection((int)(Math.random()*360));
  		ship.setDirectionX(0);
  		ship.setDirectionY(0);
+ 		for(int i = 0; i < a.size(); i++){
+ 			a.remove(i);
+ 		}
  	}
  	for(int n = 0; n < b.size(); n++){
  		for(int m = 0; m < a.size(); m++){
@@ -141,6 +144,9 @@ public void keyReleased(){
 	}
 	if(key == 'e'){
 		isHyperspace = false;
+		for(int i = 0; i < 15; i++){
+			a.add(new Asteroid());
+		}
 	}
 }
 public void mousePressed(){
