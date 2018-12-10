@@ -11,9 +11,8 @@ class Asteroid extends Floater{
 	public double getPointDirection() {return myPointDirection;}
 
 	private int rotSpeed,corners;
-	private boolean move;
-	public Asteroid(){
-		move = true; 
+	
+	public Asteroid(){ 
 		rotSpeed = (int)(Math.random()*5-2);
 		myColor = 100;
 
