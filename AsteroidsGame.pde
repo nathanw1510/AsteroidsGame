@@ -95,9 +95,6 @@ public void draw(){
  		ship.setPointDirection((int)(Math.random()*360));
  		ship.setDirectionX(0);
  		ship.setDirectionY(0);
- 		for(int i = 0; i < a.size(); i++){
- 			a.remove(i);
- 		}
  	}
  	for(int n = 0; n < b.size(); n++){
  		for(int m = 0; m < a.size(); m++){
@@ -144,9 +141,6 @@ public void keyReleased(){
 	}
 	if(key == 'e'){
 		isHyperspace = false;
-		for(int i = 0; i < 15; i++){
-			a.add(new Asteroid());
-		}
 	}
 }
 public void mousePressed(){
