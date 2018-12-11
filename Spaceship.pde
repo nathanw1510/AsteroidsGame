@@ -61,13 +61,13 @@ class Spaceship extends Floater{
     	int fCorners = 4;
     	xCorners = new int[fCorners];
     	yCorners = new int[fCorners];
-    	xCorners[0] = -20;
-    	yCorners[0] = 9;
+    	xCorners[0] = -15;
+    	yCorners[0] = 7;
     	xCorners[1] = 0;
     	yCorners[1] = 0;
-    	xCorners[2] = -20;
-    	yCorners[2] = -9;
-    	xCorners[3] = -15;
+    	xCorners[2] = -15;
+    	yCorners[2] = -7;
+    	xCorners[3] = -10;
     	yCorners[3] = 0;
 
     	beginShape();
