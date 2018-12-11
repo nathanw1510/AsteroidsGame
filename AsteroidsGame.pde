@@ -6,13 +6,15 @@ boolean isAccelerating = false;
 boolean isTurningLeft = false;
 boolean isTurningRight = false;
 boolean isHyperspace = false;
-int lives,score,bullets;
+boolean inv = true;
+int lives,score,bullets,hyperspace;
 
 public void setup(){
 	size(500,500);
 	lives = 3;
 	score = 0;
 	bullets = 30;
+	hyperspace = 5;
   	ship = new Spaceship();
   	s = new Star[150];
   	a = new ArrayList <Asteroid>();
@@ -43,7 +45,7 @@ public void draw(){
 		a.get(j).show();
 		a.get(j).move();
 		float d = dist(ship.getX(),ship.getY(),a.get(j).getX(),a.get(j).getY());
-		if(d < 20){
+		if(d < 20 && inv == false){
 			a.remove(j);
 			score+=10;
 			lives-=1;
@@ -56,6 +58,7 @@ public void draw(){
 	text("Score: "+score,350,30);
 	textSize(20);
 	text("Bullets: "+bullets,50,450);
+	text("Hyperspace Charge: "+hyperspace,105,470);
 
 	if(a.size() < 1){
  		fill(255);
@@ -113,17 +116,22 @@ public void draw(){
 public void keyPressed(){
 	if(key == 'w'){
 		isAccelerating = true;
+		inv = false;
 	}
 	if(key == 'a'){
 		isTurningLeft = true;
+		inv = false;
 	}
 	if(key == 'd'){
 		isTurningRight = true;
+		inv = false;
 	}
-	if(key == 'e'){
+	if(key == 'e' && hyperspace > 0){
 		isHyperspace = true;
+		hyperspace = hyperspace - 1;
 	}
 	if(key == ' ' && bullets > 0){
+		inv = false;
 		b.add(new Bullet());
 		bullets = bullets - 1;
 	}
@@ -141,6 +149,11 @@ public void keyReleased(){
 	}
 	if(key == 'e'){
 		isHyperspace = false;
+		if(key == 'w' || key == 'a' || key == 'd' || key == ' '){
+			inv = false;
+		}else{
+			inv = true;
+		}
 	}
 }
 public void mousePressed(){
@@ -148,6 +161,8 @@ public void mousePressed(){
 		lives = 3;
 		score = 0;
 		bullets = 30;
+		hyperspace = 5;
+		inv = true;
 		ship.myCenterX = ship.myCenterY = 250;
 		ship.setPointDirection(0);
 		ship.setDirectionX(0);
