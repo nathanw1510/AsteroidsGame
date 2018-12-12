@@ -7,7 +7,7 @@ boolean isTurningLeft = false;
 boolean isTurningRight = false;
 boolean isHyperspace = false;
 boolean inv = true;
-int lives,score,bullets,hyperspace;
+int lives,score,bullets,hyperspace,asize;
 
 public void setup(){
 	size(500,500);
@@ -31,7 +31,8 @@ public void draw(){
 	background(0);
 	ship.show();
     ship.move();
-
+    
+    asize = a.size();
     for(int k = 0; k < b.size(); k++){
 			b.get(k).show();
 			b.get(k).move();
@@ -58,7 +59,7 @@ public void draw(){
 	text("Score: "+score,350,30);
 	textSize(20);
 	text("Bullets: "+bullets,50,450);
-	text("Hyperspace Charge: "+hyperspace,105,470);
+	text("Hyperspaces: "+hyperspace,75,470);
 
 	if(a.size() < 1){
  		fill(255);
@@ -167,10 +168,7 @@ public void mousePressed(){
 		ship.setPointDirection(0);
 		ship.setDirectionX(0);
 	 	ship.setDirectionY(0);
-	 	for(int i = 0; i < a.size(); i++){
-	 		a.remove(i);
-	 	}
-	 	for(int j = 0; j < 15; j++){
+	 	for(int j = 0; j < 15 - asize; j++){
 	 		a.add(new Asteroid());
 	 	}
 		redraw();
