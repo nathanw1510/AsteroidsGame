@@ -32,6 +32,12 @@ public void draw(){
 	ship.show();
     ship.move();
     
+    if(inv == true){
+    	noFill();
+    	stroke(60, 252, 249);
+    	ellipse(ship.getX(),ship.getY(),40,40);
+    }
+    
     asize = a.size();
     for(int k = 0; k < b.size(); k++){
 			b.get(k).show();
