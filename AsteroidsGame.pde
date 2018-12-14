@@ -7,21 +7,26 @@ boolean isTurningLeft = false;
 boolean isTurningRight = false;
 boolean isHyperspace = false;
 boolean inv = true;
+boolean win,win2,level1,level2,level3 = false;
+
 int lives,score,bullets,hyperspace,asize;
 
 public void setup(){
 	size(500,500);
 	lives = 3;
 	score = 0;
-	bullets = 30;
 	hyperspace = 5;
   	ship = new Spaceship();
   	s = new Star[150];
   	a = new ArrayList <Asteroid>();
   	b = new ArrayList <Bullet>();
-  	for(int j = 0; j < 15; j++){
-  		a.add(new Asteroid());
-  	}
+  	bullets = 30;
+  	level1 = true;
+
+	for(int j = 0; j < 15; j++){
+		a.add(new Asteroid());
+	}
+	
   	for(int i = 0; i < s.length; i++){
   		s[i] = new Star();
   	}
@@ -37,14 +42,14 @@ public void draw(){
     	stroke(60, 252, 249);
     	ellipse(ship.getX(),ship.getY(),40,40);
     }
-    
-    asize = a.size();
-    for(int k = 0; k < b.size(); k++){
+
+	   asize = a.size();
+	   for(int k = 0; k < b.size(); k++){
 			b.get(k).show();
 			b.get(k).move();
 		}
 
-		
+			
 	for(int i = 0; i < s.length; i++){
 		s[i].show();
 	}
@@ -68,12 +73,20 @@ public void draw(){
 	text("Hyperspaces: "+hyperspace,75,470);
 
 	if(a.size() < 1){
- 		fill(255);
- 		textSize(20);
- 		textAlign(CENTER);
- 		text("Good job",250,400);
- 		text("Click to play again",250,450);
- 	}
+	 	fill(255);
+	 	textSize(20);
+	 	textAlign(CENTER);
+	 	text("Good job",250,400);
+	 	text("Click to play again",250,450);
+	 	win = true;
+	 }
+	if(win == true){
+		level2 = true;
+	}
+	if(win == true && level2 == true){
+		level3 = true;
+		level2 = false;
+	}
 
 	if(lives < 1){
 		fill(0);
@@ -85,40 +98,40 @@ public void draw(){
 		text("Click to play again",250,260);
 	}
 
-    if(isAccelerating == true){
-    	ship.accelerate(.05);
-    }
-    if(isTurningLeft == true){
-    	ship.turn(-5);
-    }
-    if(isTurningRight == true){
-    	ship.turn(5);
-    }
-    if(isHyperspace == true){
- 		background(0);
- 		for(int i = 0; i < s.length; i++){
- 			stroke(255);
- 			s[i].show();
- 		}
-    	ship.myCenterX = (int)(Math.random()*width);
- 		ship.myCenterY = (int)(Math.random()*height);
- 		ship.setPointDirection((int)(Math.random()*360));
- 		ship.setDirectionX(0);
- 		ship.setDirectionY(0);
- 	}
- 	for(int n = 0; n < b.size(); n++){
- 		for(int m = 0; m < a.size(); m++){
- 			float dB = dist(b.get(n).getX(),b.get(n).getY(),a.get(m).getX(),a.get(m).getY());
- 			if(dB < 20){
- 				a.remove(m);
- 				b.remove(n);
- 				score+=20;
- 				break;
- 			}
- 		}
- 	}
-
+	   if(isAccelerating == true){
+	    ship.accelerate(.025);
+	   }
+	   if(isTurningLeft == true){
+	    ship.turn(-5);
+	   }
+	   if(isTurningRight == true){
+	    ship.turn(5);
+	   }
+	   if(isHyperspace == true){
+	 	background(0);
+	 	for(int i = 0; i < s.length; i++){
+	 		stroke(255);
+	 		s[i].show();
+	 	}
+	    ship.myCenterX = (int)(Math.random()*width);
+	 	ship.myCenterY = (int)(Math.random()*height);
+	 	ship.setPointDirection((int)(Math.random()*360));
+	 	ship.setDirectionX(0);
+	 	ship.setDirectionY(0);
+	 }
+	 for(int n = 0; n < b.size(); n++){
+	 	for(int m = 0; m < a.size(); m++){
+	 		float dB = dist(b.get(n).getX(),b.get(n).getY(),a.get(m).getX(),a.get(m).getY());
+	 		if(dB < 20){
+	 			a.remove(m);
+	 			b.remove(n);
+	 			score+=20;
+	 			break;
+	 		}
+	 	}
+	}
 }
+
 
 public void keyPressed(){
 	if(key == 'w'){
@@ -142,8 +155,8 @@ public void keyPressed(){
 		b.add(new Bullet());
 		bullets = bullets - 1;
 	}
+	
 }
-
 public void keyReleased(){
 	if(key == 'w'){
 		isAccelerating = false;
@@ -162,21 +175,37 @@ public void keyReleased(){
 			inv = true;
 		}
 	}
+	
 }
 public void mousePressed(){
 	if(lives < 1 || a.size() < 1){
 		lives = 3;
 		score = 0;
-		bullets = 30;
 		hyperspace = 5;
 		inv = true;
 		ship.myCenterX = ship.myCenterY = 250;
 		ship.setPointDirection(0);
 		ship.setDirectionX(0);
 	 	ship.setDirectionY(0);
-	 	for(int j = 0; j < 15 - asize; j++){
-	 		a.add(new Asteroid());
-	 	}
+	 	if(level1 == true){	
+	 		bullets = 30;
+	 		for(int j = 0; j < 15 - asize; j++){
+	 			a.add(new Asteroid());
+	 		}
+		}
+	
+		if(level2 == true){
+			bullets = 45;
+		 	for(int j = 0; j < 30 - asize; j++){
+		 		a.add(new Asteroid());
+		 	}
+		}
+		if(level3 == true){
+			bullets = 60;
+		 	for(int j = 0; j < 45 - asize; j++){
+		 		a.add(new Asteroid());
+		 	}
+		}
 		redraw();
 	}
 }
